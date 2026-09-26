@@ -1,198 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Мои буквы и слова</title>
 <style>
-:root{
-  --bg:#fff8ec; --card:#ffffff; --accent:#ff8c42; --accent2:#4ea8de;
-  --good:#4caf50; --bad:#e64553; --text:#2b2b2b;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){--bg:#20242b;--card:#2c313c;--text:#f0f0f0;}
-}
-:root[data-theme="dark"]{--bg:#20242b;--card:#2c313c;--text:#f0f0f0;}
-*{box-sizing:border-box;}
-html,body{height:100%;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Comic Sans MS',Verdana,sans-serif;}
-h1{text-align:center;font-size:1.6rem;color:var(--accent);padding:12px 8px 0;}
-.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:10px;}
-.tabs button{border:none;background:var(--card);padding:10px 16px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:0.95rem;box-shadow:0 2px 4px rgba(0,0,0,.15);color:var(--text);}
-.tabs button.active{background:var(--accent);color:#fff;}
-.panel{display:none;max-width:820px;margin:0 auto;padding:10px 14px 40px;}
-.panel.active{display:block;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;}
-.card{background:var(--card);border-radius:14px;padding:10px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.15);cursor:pointer;}
-.card .letter{font-size:1.6rem;font-weight:bold;color:var(--accent2);}
-.card .emoji{font-size:2rem;margin:4px 0;}
-.card .word{font-size:1rem;}
-.card button{margin-top:6px;border:none;background:var(--accent);color:#fff;border-radius:10px;padding:4px 8px;cursor:pointer;}
-.rule{background:var(--card);border-radius:14px;margin:12px 0;box-shadow:0 2px 6px rgba(0,0,0,.15);overflow:hidden;}
-.rule-head{padding:12px 16px;font-weight:bold;font-size:1.1rem;cursor:pointer;display:flex;justify-content:space-between;color:var(--accent);}
-.rule-body{padding:0 16px 16px;display:none;}
-.rule.open .rule-body{display:block;}
-.hl{color:var(--accent);font-weight:bold;}
-.ex{margin:6px 0;font-size:1.05rem;}
-.quiz{margin-top:10px;background:rgba(78,168,222,.1);border-radius:10px;padding:10px;}
-.quiz button{margin:4px;padding:8px 12px;border-radius:10px;border:1px solid var(--accent2);background:var(--card);color:var(--text);cursor:pointer;}
-.trainer{text-align:center;}
-.trainer .emoji{font-size:4rem;margin:14px 0;}
-.trainer input{font-size:1.2rem;padding:8px;border-radius:10px;border:2px solid var(--accent2);text-align:center;width:180px;}
-.trainer .btnrow{margin-top:12px;}
-.trainer button{font-size:1rem;padding:8px 16px;border-radius:10px;border:none;background:var(--accent);color:#fff;cursor:pointer;margin:4px;}
-.feedback{font-size:1.2rem;font-weight:bold;min-height:30px;margin-top:8px;}
-.ok{color:var(--good);} .no{color:var(--bad);}
-.score{font-size:1rem;margin-top:6px;color:var(--accent2);}
-.speak{background:none;border:none;font-size:1.4rem;cursor:pointer;}
+:root{--bg:#fff8ec;--card:#fff;--a:#ff8c42;--b:#4ea8de;--ok:#4caf50;--bad:#e64553;--text:#2b2b2b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Verdana,sans-serif}h1{text-align:center;color:var(--a);font-size:1.6rem}.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:10px}.tabs button,.trainer button,.card button{border:0;border-radius:12px;padding:9px 14px;cursor:pointer}.tabs button{background:var(--card);color:var(--text);font-weight:bold}.tabs .active,.trainer button,.card button{background:var(--a);color:#fff}.panel{display:none;max-width:850px;margin:auto;padding:10px 14px 40px}.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px}.card{background:var(--card);border-radius:14px;padding:10px;text-align:center;box-shadow:0 2px 6px #0002;cursor:pointer}.letter{font-size:1.6rem;font-weight:bold;color:var(--b)}.emoji{font-size:2.4rem;margin:5px}.word{font-size:1rem}.card button{margin-top:6px}.rule{background:var(--card);border-radius:14px;margin:12px 0;box-shadow:0 2px 6px #0002;overflow:hidden}.rule-head{padding:13px;font-weight:bold;color:var(--a);cursor:pointer;display:flex;justify-content:space-between}.rule-body{display:none;padding:0 16px 16px}.rule.open .rule-body{display:block}.quiz{background:#4ea8de18;border-radius:10px;padding:10px}.quiz button{margin:4px;padding:8px;border:1px solid var(--b);border-radius:9px;background:var(--card);color:var(--text)}.trainer{text-align:center}.trainer .emoji{font-size:5rem}.trainer input{font-size:1.2rem;padding:9px;border:2px solid var(--b);border-radius:10px;text-align:center;width:190px}.feedback{font-size:1.2rem;font-weight:bold;min-height:30px;margin:10px}.ok{color:var(--ok)}.no{color:var(--bad)}.score{color:var(--b)}.speak{border:0;background:transparent;font-size:1.3rem;cursor:pointer}
 </style>
 </head>
 <body>
 <h1>🔤 Мои буквы и слова</h1>
-<div class="tabs">
-  <button class="tabbtn active" data-t="cards">Буквы и слова</button>
-  <button class="tabbtn" data-t="rules">Правила чтения</button>
-  <button class="tabbtn" data-t="trainer">Тренажёр</button>
-</div>
-
-<div class="panel active" id="cards">
-  <div class="grid" id="cardGrid"></div>
-</div>
-
-<div class="panel" id="rules">
-  <div id="rulesList"></div>
-</div>
-
-<div class="panel" id="trainer">
-  <div class="trainer">
-    <p>Посмотри на картинку и напиши слово по-английски:</p>
-    <div class="emoji" id="trEmoji">🐱</div>
-    <button class="speak" onclick="speak(words[trIdx].w)">🔊 послушать</button>
-    <div><input id="trInput" autocomplete="off" placeholder="cat"></div>
-    <div class="btnrow">
-      <button onclick="checkAnswer()">Проверить</button>
-      <button onclick="nextWord()">Дальше ➜</button>
-    </div>
-    <div class="feedback" id="trFeedback"></div>
-    <div class="score" id="trScore">Правильно: 0 / 0</div>
-  </div>
-</div>
-
+<div class="tabs"><button class="tab active" data-panel="cards">Буквы и слова</button><button class="tab" data-panel="rules">Правила чтения</button><button class="tab" data-panel="trainer">Тренажёр</button></div>
+<section class="panel active" id="cards"><div class="grid" id="cardGrid"></div></section>
+<section class="panel" id="rules"><div id="rulesList"></div></section>
+<section class="panel" id="trainer"><div class="trainer"><p>Посмотри на картинку и напиши слово по-английски:</p><div class="emoji" id="trEmoji"></div><button class="speak" id="listen">🔊 послушать</button><p><input id="trInput" autocomplete="off" placeholder="cat"></p><button id="check">Проверить</button><button id="next">Дальше ➜</button><div class="feedback" id="feedback"></div><div class="score" id="score">Правильно: 0 / 0</div></div></section>
 <script>
+// Каждая картинка специально соответствует своему английскому слову.
 const words=[
- {l:'a',w:'ant',e:'🐜'},{l:'b',w:'bed',e:'🛏️'},{l:'c',w:'cat',e:'���'},{l:'d',w:'dog',e:'🐶'},
- {l:'e',w:'egg',e:'🥚'},{l:'f',w:'flag',e:'🚩'},{l:'g',w:'glass',e:'🥛'},{l:'h',w:'horse',e:'🐴'},
- {l:'i',w:'ink',e:'🖋️'},{l:'j',w:'jug',e:'🫙'},{l:'k',w:'kangaroo',e:'🦘'},{l:'l',w:'lamp',e:'💡'},
- {l:'m',w:'mouse',e:'🐭'},{l:'n',w:'nest',e:'🪹'},{l:'o',w:'orange',e:'🍊'},{l:'p',w:'pin',e:'📌'},
- {l:'q',w:'queen',e:'👑'},{l:'r',w:'rabbit',e:'🐰'},{l:'s',w:'snake',e:'🐍'},{l:'t',w:'tree',e:'🌳'},
- {l:'u',w:'umbrella',e:'☂️'},{l:'v',w:'vest',e:'🦺'},{l:'w',w:'window',e:'🪟'},{l:'x',w:'box',e:'📦'},
- {l:'y',w:'yacht',e:'⛵'},{l:'z',w:'zip',e:'⚡'}
-];
-
-function speak(text){
-  try{
-    const u=new SpeechSynthesisUtterance(text);
-    u.lang='en-GB'; u.rate=0.8;
-    speechSynthesis.cancel(); speechSynthesis.speak(u);
-  }catch(e){}
-}
-
-// tabs
-document.querySelectorAll('.tabbtn').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  document.getElementById(b.dataset.t).classList.add('active');
-}));
-
-// cards
-const grid=document.getElementById('cardGrid');
-words.forEach(item=>{
-  const c=document.createElement('div');
-  c.className='card';
-  c.innerHTML=`<div class="letter">${item.l.toUpperCase()}${item.l}</div>
-    <div class="emoji">${item.e}</div>
-    <div class="word">${item.w}</div>
-    <button>🔊</button>`;
-  c.querySelector('button').addEventListener('click',ev=>{ev.stopPropagation();speak(item.w);});
-  c.addEventListener('click',()=>speak(item.w));
-  grid.appendChild(c);
-});
-
-// rules
-const rules=[
- {t:'Ee — две буквы e вместе',
-  body:`<p>Одна буква <b>e</b> обычно даёт короткий звук [э]: egg, bed, vest, nest.</p>
-  <p>А когда <b>e</b> встречаются вдвоём — <span class="hl">ee</span> — получается длинный звук [и:], как в русском "и", только протяжно.</p>
-  <p class="ex">tr<span class="hl">ee</span> [три:] — дерево, gr<span class="hl">ee</span>n — зелёный, s<span class="hl">ee</span> — видеть</p>`,
-  q:'Какое слово читается с длинным звуком [и:]?',opts:['egg','tree','bed'],correct:1},
- {t:'Qu — всегда вместе',
-  body:`<p>Буква <b>q</b> в английском никогда не бывает одна — после неё всегда стоит <b>u</b>. Вместе <span class="hl">qu</span> звучит как [кв].</p>
-  <p class="ex"><span class="hl">qu</span>een [квин] — королева, <span class="hl">qu</span>ick [квик] — быстрый</p>`,
-  q:'Как читается буквосочетание qu?',opts:['[ку]','[кв]','[ку:]'],correct:1},
- {t:'Ou — секретный звук [ау]',
-  body:`<p>Буквы <b>o</b> и <b>u</b> вместе — <span class="hl">ou</span> — читаются как [ау], а не как "оу"!</p>
-  <p class="ex">m<span class="hl">ou</span>se [маус] — мышь, h<span class="hl">ou</span>se [хаус] — дом</p>`,
-  q:'Как правильно прочитать mouse?',opts:['[моусэ]','[маус]','[мос��]'],correct:1},
- {t:'Ge — буква G умеет "шипеть"',
-  body:`<p>Перед <b>a, o, u</b> буква <b>g</b> звучит твёрдо [г]: fla<b>g</b> [флаг].</p>
-  <p>А перед <b>e, i, y</b> буква <b>g</b> смягчается и звучит как русское [дж]!</p>
-  <p class="ex">oran<span class="hl">ge</span> [орИндж] — апельсин, ca<span class="hl">ge</span> [кейдж] — клетка, gi̲raffe [джирАф]</p>`,
-  q:'В каком слове g звучит как [дж]?',opts:['flag','glass','orange'],correct:2},
- {t:'Oo — короткий и длинный',
-  body:`<p>Две буквы <b>o</b> вместе — <span class="hl">oo</span> — могут звучать по-разному: иногда длинно [у:], иногда коротко [у].</p>
-  <p class="ex">z<span class="hl">oo</span> [зу:] — зоопарк (длинный звук), b<span class="hl">oo</span>k [бук] — книга (короткий звук)</p>`,
-  q:'В слове zoo звук oo — какой?',opts:['длинный [у:]','короткий [у]','как [о]'],correct:0}
-];
-const rl=document.getElementById('rulesList');
-rules.forEach((r,i)=>{
-  const d=document.createElement('div');
-  d.className='rule';
-  d.innerHTML=`<div class="rule-head">${r.t}<span>▼</span></div>
-   <div class="rule-body">${r.body}
-     <div class="quiz">
-       <p><b>${r.q}</b></p>
-       ${r.opts.map((o,j)=>`<button data-c="${j===r.correct}">${o}</button>`).join('')}
-       <div class="qfb" style="margin-top:6px;font-weight:bold;"></div>
-     </div>
-   </div>`;
-  d.querySelector('.rule-head').addEventListener('click',()=>d.classList.toggle('open'));
-  d.querySelectorAll('.quiz button').forEach(btn=>btn.addEventListener('click',()=>{
-    const fb=d.querySelector('.qfb');
-    if(btn.dataset.c==='true'){fb.textContent='✅ Верно!';fb.style.color='var(--good)';}
-    else{fb.textContent='❌ Попробуй ещё раз';fb.style.color='var(--bad)';}
-  }));
-  rl.appendChild(d);
-});
-
-// trainer
-let trIdx=0, correctCount=0, totalCount=0, order=[...Array(words.length).keys()];
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-shuffle(order);
-function loadWord(){
-  const item=words[order[trIdx]];
-  document.getElementById('trEmoji').textContent=item.e;
-  document.getElementById('trInput').value='';
-  document.getElementById('trFeedback').textContent='';
-  document.getElementById('trInput').focus();
-}
-function checkAnswer(){
-  const item=words[order[trIdx]];
-  const val=document.getElementById('trInput').value.trim().toLowerCase();
-  totalCount++;
-  const fb=document.getElementById('trFeedback');
-  if(val===item.w){correctCount++;fb.textContent='✅ Правильно!';fb.className='feedback ok';speak(item.w);}
-  else{fb.textContent='❌ Правильно: '+item.w;fb.className='feedback no';}
-  document.getElementById('trScore').textContent=`Правильно: ${correctCount} / ${totalCount}`;
-}
-function nextWord(){
-  trIdx=(trIdx+1)%order.length;
-  if(trIdx===0)shuffle(order);
-  loadWord();
-}
-document.getElementById('trInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkAnswer();});
-loadWord();
+ ['a','ant','🐜'],['b','bed','🛏️'],['c','cat','🐱'],['d','dog','🐶'],['e','egg','🥚'],['f','fish','🐟'],['g','goat','🐐'],['h','horse','🐴'],['i','ice cream','🍦'],['j','jam','🍓'],['k','kangaroo','🦘'],['l','lamp','💡'],['m','mouse','🐭'],['n','nose','👃'],['o','orange','🍊'],['p','pizza','🍕'],['q','queen','👑'],['r','rabbit','🐰'],['s','snake','🐍'],['t','tree','🌳'],['u','umbrella','☂️'],['v','vest','🦺'],['w','window','🪟'],['x','xylophone','🎼'],['y','yacht','⛵'],['z','zebra','🦓']
+].map(([l,w,e])=>({l,w,e}));
+function speak(text){try{const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.panel).classList.add('active')});
+const grid=document.getElementById('cardGrid');words.forEach(item=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="letter">${item.l.toUpperCase()} ${item.l}</div><div class="emoji">${item.e}</div><div class="word">${item.w}</div><button>🔊 произнести</button>`;c.onclick=()=>speak(item.w);c.querySelector('button').onclick=e=>{e.stopPropagation();speak(item.w)};grid.append(c)});
+const rules=[['Ee — две e вместе','В словах tree и green сочетание ee даёт долгий звук [и:].','Какое слово читается с [и: ]?',['egg','tree','bed'],1],['Qu — всегда вместе','Буквы qu обычно звучат как [кв]: queen, quick.','Как читается qu?',['[ку]','[кв]','[ку:]'],1],['Ou — звук [ау]','В слове mouse сочетание ou звучит как [ау].','Как прочитать mouse?',['[моусэ]','[маус]','[мосе]'],1],['G перед e, i, y','Перед e, i, y буква g часто звучит как [дж]: orange.','Где g звучит как [дж]?',['flag','glass','orange'],2],['Oo — два варианта','В zoo звук oo долгий [у:], а в book короткий [у].','Какой звук в zoo?',['долгий [у:]','короткий [у]','[о]'],0]];
+const rl=document.getElementById('rulesList');rules.forEach(r=>{const d=document.createElement('div');d.className='rule';d.innerHTML=`<div class="rule-head">${r[0]}<span>▼</span></div><div class="rule-body"><p>${r[1]}</p><div class="quiz"><b>${r[2]}</b><br>${r[3].map((x,i)=>`<button data-ok="${i===r[4]}">${x}</button>`).join('')}<div class="qfb"></div></div></div>`;d.querySelector('.rule-head').onclick=()=>d.classList.toggle('open');d.querySelectorAll('.quiz button').forEach(b=>b.onclick=()=>{const f=d.querySelector('.qfb');f.textContent=b.dataset.ok==='true'?'✅ Верно!':'❌ Попробуй ещё раз';f.style.color=b.dataset.ok==='true'?'var(--ok)':'var(--bad)'});rl.append(d)});
+let index=0,correct=0,total=0,order=words.map((_,i)=>i);function shuffle(a){for(let i=a.length-1;i;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}shuffle(order);function load(){const x=words[order[index]];trEmoji.textContent=x.e;trInput.value='';feedback.textContent='';trInput.focus()}function check(){const x=words[order[index]],v=trInput.value.trim().toLowerCase();total++;if(v===x.w){correct++;feedback.textContent='✅ Правильно!';feedback.className='feedback ok';speak(x.w)}else{feedback.textContent='❌ Правильно: '+x.w;feedback.className='feedback no'}score.textContent=`Правильно: ${correct} / ${total}`}listen.onclick=()=>speak(words[order[index]].w);document.getElementById('check').onclick=check;document.getElementById('next').onclick=()=>{index=(index+1)%order.length;if(!index)shuffle(order);load()};trInput.onkeydown=e=>{if(e.key==='Enter')check()};load();
 </script>
 </body>
 </html>
